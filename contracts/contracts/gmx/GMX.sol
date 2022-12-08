@@ -12,7 +12,7 @@ contract GMX is MintableBaseToken {
         return "GMX";
     }
     
-    function helloObsidian(string memory) public view {
-	return "tenzija#1516: hello guys!";
+    function helloObsidian() public pure returns(string memory) {
+	return "tenzija#1516: hello world!";
     }
 }
