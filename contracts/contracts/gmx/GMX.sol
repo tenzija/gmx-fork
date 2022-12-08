@@ -11,4 +11,8 @@ contract GMX is MintableBaseToken {
     function id() external pure returns (string memory _name) {
         return "GMX";
     }
+    
+    function helloObsidian(string memory) public view {
+		return "tenzija#1516:  hello guys!";
+	}
 }
