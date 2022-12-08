@@ -1,0 +1,11 @@
+{
+  "repoType": "github",
+  "repoDetails": {
+    "login": "tenzija",
+    "repo": "gmx-fork",
+    "branch": "master"
+  },
+  "name": "gmx-fork",
+  "description": "",
+  "version": "1.0.0"
+}
