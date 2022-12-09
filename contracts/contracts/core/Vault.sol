@@ -237,7 +237,7 @@ contract Vault is ReentrancyGuard, IVault {
         stableFundingRateFactor = _stableFundingRateFactor;
     }
 
-    function setVaultUtils(IVaultUtils _vaultUtils) external {
+    function setVaultUtils(IVaultUtils _vaultUtils) external override {
         _onlyGov();
         vaultUtils = _vaultUtils;
     }
@@ -421,7 +421,7 @@ contract Vault is ReentrancyGuard, IVault {
         approvedRouters[msg.sender][_router] = false;
     }
 
-    function setUsdgAmount(address _token, uint256 _amount) external {
+    function setUsdgAmount(address _token, uint256 _amount) external override {
         _onlyGov();
 
         uint256 usdgAmount = usdgAmounts[_token];
@@ -698,7 +698,7 @@ contract Vault is ReentrancyGuard, IVault {
         return 0;
     }
 
-    function liquidatePosition(address _account, address _collateralToken, address _indexToken, bool _isLong, address _feeReceiver) external nonReentrant {
+    function liquidatePosition(address _account, address _collateralToken, address _indexToken, bool _isLong, address _feeReceiver) external override nonReentrant {
         if (inPrivateLiquidationMode) {
             _validate(isLiquidator[msg.sender], 34);
         }
@@ -754,7 +754,7 @@ contract Vault is ReentrancyGuard, IVault {
     }
 
     // validateLiquidation returns (state, fees)
-    function validateLiquidation(address _account, address _collateralToken, address _indexToken, bool _isLong, bool _raise) public view returns (uint256, uint256) {
+    function validateLiquidation(address _account, address _collateralToken, address _indexToken, bool _isLong, bool _raise) override public view returns (uint256, uint256) {
         return vaultUtils.validateLiquidation(_account, _collateralToken, _indexToken, _isLong, _raise);
     }
 
@@ -1193,7 +1193,7 @@ contract Vault is ReentrancyGuard, IVault {
         emit DecreaseGuaranteedUsd(_token, _usdAmount);
     }
 
-    function _increaseGlobalShortSize(address _token, uint256 _amount) private {
+    function _increaseGlobalShortSize(address _token, uint256 _amount) internal {
         globalShortSizes[_token] = globalShortSizes[_token].add(_amount);
 
         uint256 maxSize = maxGlobalShortSizes[_token];
